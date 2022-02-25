@@ -1,4 +1,4 @@
-<img src="/src/images/logo.svg" width="300" height="300">
+## <img src="/src/images/logo.svg" width="300" height="300">
 
 ### Around-react
 
