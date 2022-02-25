@@ -1,8 +1,8 @@
 ### Around-react
 
-![](/src/images/logo.svg)
+![]<img src="/src/images/logo.svg" width="400" height="790">
 
-###by - _Carolina Toren_
+## by - _Carolina Toren_
 
 - Description and functionality
 
