@@ -34,7 +34,7 @@
 
 =============
 
-##Github pages
+## Github pages
 
 [Link](https://carolina-toren.github.io/around-react/)
 
