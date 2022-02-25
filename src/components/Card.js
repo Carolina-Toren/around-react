@@ -3,7 +3,7 @@ export default function Card(props) {
     <div className="photo-feed__card">
       <button
         className="photo-feed__delete-btn"
-        onClick={props.onDeleteClick}
+        // onClick={props.onDeleteClick}
         type="button"
         aria-label="delete button"
       ></button>
@@ -20,7 +20,7 @@ export default function Card(props) {
         <div className="photo-feed__like-container">
           <button
             className="photo-feed__card-button"
-            onClick={props.onCardLike}
+            // onClick={props.onCardLike}
             type="button"
             aria-label="like button"
           ></button>
