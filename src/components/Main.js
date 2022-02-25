@@ -3,13 +3,23 @@ import React, { useState, useEffect } from "react";
 import { api } from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
-export default function Main(props) {
+export default function Main({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onCardClick,
+  isOpenEdit,
+  isOpenAdd,
+  isOpenAvatar,
+  isOpenImage,
+  onClose,
+  selectedCard,
+}) {
   //////////////////////
   //getting user info///
   /////////////////////
-  const [userName, setuserName] = useState();
-  const [userDescription, setuserDescription] = useState();
-  const [userAvatar, setuserAvatar] = useState();
+
+  const [user, setUser] = useState({ userName: "", userDescription: "", userAvatar: "" });
 
   //////////////////////
   //setting User Info//
@@ -18,9 +28,9 @@ export default function Main(props) {
     api
       .getUserInfo()
       .then((res) => {
-        setuserAvatar(res.avatar);
-        setuserDescription(res.about);
-        setuserName(res.name);
+        setUser({ userName: res.name, userDescription: res.about, userAvatar: res.avatar });
+        // setUserDescription(res.about);
+        // setUserName(res.name);
       })
       .catch(console.log);
   }, []);
@@ -45,30 +55,30 @@ export default function Main(props) {
           <div
             className="profile__image"
             style={{
-              backgroundImage: `url("${userAvatar}")`,
+              backgroundImage: `url("${user.userAvatar}")`,
             }}
           >
-            <button className="profile__img-button" onClick={props.onEditAvatarClick}></button>
+            <button className="profile__img-button" onClick={onEditAvatarClick} />
           </div>
           <div className="profile__info">
             <div className="profile__info-title">
-              <h1 className="profile__name">{userName}</h1>
+              <h1 className="profile__name">{user.userName}</h1>
               <button
                 className="profile__edit-button"
-                onClick={props.onEditProfileClick}
+                onClick={onEditProfileClick}
                 type="button"
                 aria-label="Edit profile user information button"
-              ></button>
+              />
             </div>
-            <p className="profile__occupation">{userDescription}</p>
+            <p className="profile__occupation">{user.userDescription}</p>
           </div>
           <button
             className="profile__add-button"
-            onClick={props.onAddPlaceClick}
+            onClick={onAddPlaceClick}
             type="button"
             aria-label="Add photo button"
             id="add_btn"
-          ></button>
+          />
         </section>
         {/* <!--END OF PROFILE SECTION--> */}
         <section className="photo-feed">
@@ -77,9 +87,9 @@ export default function Main(props) {
               <Card
                 key={card._id}
                 card={card}
-                // onDeleteClick={props.onDeleteClick}
-                onCardClick={props.onCardClick}
-                // onCardLike={props.onCardLike}
+                // onDeleteClick={onDeleteClick}
+                onCardClick={onCardClick}
+                // onCardLike={onCardLike}
               />
             ))}
           </div>
@@ -101,7 +111,7 @@ export default function Main(props) {
               placeholder="Full Name"
               required
             />
-            <span className="popup__error" id="title-input-error"></span>
+            <span className="popup__error" id="title-input-error" />
             <input
               type="url"
               className="popup__input"
@@ -110,11 +120,11 @@ export default function Main(props) {
               placeholder="Image link"
               required
             />
-            <span className="popup__error" id="img-link-input-error"></span>
+            <span className="popup__error" id="img-link-input-error" />
           </div>
         }
-        isOpen={props.isOpenEdit}
-        isClose={props.isClose}
+        isOpen={isOpenEdit}
+        onClose={onClose}
       />
       <PopupWithForm
         name="add"
@@ -131,7 +141,7 @@ export default function Main(props) {
               placeholder="Title"
               required
             />
-            <span className="popup__error" id="title-input-error"></span>
+            <span className="popup__error" id="title-input-error" />
             <input
               type="url"
               className="popup__input"
@@ -141,11 +151,11 @@ export default function Main(props) {
               required
             />
 
-            <span className="popup__error" id="img-link-input-error"></span>
+            <span className="popup__error" id="img-link-input-error" />
           </div>
         }
-        isOpen={props.isOpenAdd}
-        isClose={props.isClose}
+        isOpen={isOpenAdd}
+        onClose={onClose}
       />
       <PopupWithForm
         name="profile-img"
@@ -161,18 +171,13 @@ export default function Main(props) {
               required
             />
 
-            <span className="popup__error" id="title-input-error"></span>
+            <span className="popup__error" id="title-input-error" />
           </div>
         }
-        isOpen={props.isOpenAvatar}
-        isClose={props.isClose}
+        isOpen={isOpenAvatar}
+        onClose={onClose}
       />
-      <ImagePopup
-        onClick={props.onCardClick}
-        selectedCard={props.selectedCard}
-        isOpen={props.isOpenImage}
-        isClose={props.isClose}
-      />
+      <ImagePopup onClick={onCardClick} selectedCard={selectedCard} isOpen={isOpenImage} onClose={onClose} />
     </>
   );
 }

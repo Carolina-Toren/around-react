@@ -23,7 +23,7 @@ function App() {
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
-    setSelectedCard(card.target);
+    setSelectedCard(card);
   }
   function handleEditAvatarClick() {
     seIsEditAvatarPopupOpen(true);
@@ -61,7 +61,7 @@ function App() {
           isOpenAdd={isAddPlacePopupOpen}
           isOpenAvatar={isEditAvatarPopupOpen}
           isOpenImage={isImagePopupOpen}
-          isClose={closeAllPopups}
+          onClose={closeAllPopups}
           selectedCard={selectedCard}
         />
 
