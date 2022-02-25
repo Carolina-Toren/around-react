@@ -1,8 +1,8 @@
 ### Around-react
 
-##by - _Carolina Toren_
-
 ![](/src/images/logo.svg)
+
+###by - _Carolina Toren_
 
 - Description and functionality
 
