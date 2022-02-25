@@ -77,9 +77,9 @@ export default function Main(props) {
               <Card
                 key={card._id}
                 card={card}
-                onDeleteClick={props.onDeleteClick}
+                // onDeleteClick={props.onDeleteClick}
                 onCardClick={props.onCardClick}
-                onCardLike={props.onCardLike}
+                // onCardLike={props.onCardLike}
               />
             ))}
           </div>

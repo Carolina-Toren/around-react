@@ -6,13 +6,13 @@ import Footer from "./Footer.js";
 import { api } from "../utils/api";
 import Card from "./Card";
 
-function handleDeleteClick() {
-  console.log("deleting");
-}
+// function handleDeleteClick() {
+//   console.log("deleting");
+// }
 
-function handleLikeClick() {
-  console.log("like works");
-}
+// function handleLikeClick() {
+//   console.log("like works");
+// }
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -55,8 +55,8 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick}
-          onDeleteClick={handleDeleteClick}
-          onCardLike={handleLikeClick}
+          // onDeleteClick={handleDeleteClick}
+          // onCardLike={handleLikeClick}
           isOpenEdit={isEditProfilePopupOpen}
           isOpenAdd={isAddPlacePopupOpen}
           isOpenAvatar={isEditAvatarPopupOpen}
