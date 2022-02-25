@@ -1,6 +1,6 @@
 ### Around-react
 
-![]<img src="/src/images/logo.svg" width="400" height="790">
+<img src="/src/images/logo.svg" width="400" height="400">
 
 ## by - _Carolina Toren_
 
