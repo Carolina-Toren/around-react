@@ -44,10 +44,15 @@ function App() {
   }, []);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((item) => (item._id === card._id ? newCard : item)));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleDeleteClick() {
@@ -59,7 +64,7 @@ function App() {
       })
       .catch(console.log)
       .finally(() => {
-        closeAllPopups();
+        setIsDeleteCardPopupOpen(false);
       });
   }
 
@@ -112,7 +117,7 @@ function App() {
         console.log(`Error: ${err}`);
       })
       .finally(() => {
-        closeAllPopups();
+        setIsEditProfilePopupOpen(false);
       });
   }
 
@@ -132,7 +137,7 @@ function App() {
         console.log(`Error: ${err}`);
       })
       .finally(() => {
-        closeAllPopups();
+        seIsEditAvatarPopupOpen(false);
       });
   }
 
@@ -141,9 +146,13 @@ function App() {
       .createCard(data)
       .then((newCard) => {
         setCards([newCard, ...cards]);
-        closeAllPopups();
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      })
+      .finally(() => {
+        setIsAddPlacePopupOpen(false);
+      });
   }
 
   return (

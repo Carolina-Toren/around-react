@@ -24,10 +24,8 @@ export default function Card({ card, onCardClick, onCardLike, onDeleteClick }) {
     isOwn ? "photo-feed__delete-btn_visible" : "photo-feed__delete-btn_hidden"
   }`;
 
-  // Check if the card was liked by the current user
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
-  // Create a variable which you then set in `className` for the like button
   const cardLikeButtonClassName = `photo-feed__card-button ${
     isLiked ? "photo-feed__card-button_active" : "photo-feed__card-button_not-active"
   }`;
@@ -44,7 +42,7 @@ export default function Card({ card, onCardClick, onCardLike, onDeleteClick }) {
       <img className="photo-feed__image" onClick={handleClick} src={`${card.link}`} alt={`${card.name}`} />
 
       <div className="photo-feed__card-caption">
-        <h2 className="photo-feed__text"> {`${card.name}`}</h2>
+        <h2 className="photo-feed__text"> {card.name}</h2>
         <div className="photo-feed__like-container">
           <button
             className={cardLikeButtonClassName}
