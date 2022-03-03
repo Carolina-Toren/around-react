@@ -1,4 +1,5 @@
-export default function PopupWithForm({ name, title, input, isOpen, onClose }) {
+export default function PopupWithForm(props) {
+  const { name, title, buttonTitle, isOpen, onClose, onSubmit } = props;
   return (
     <div className={`popup popup_${name} ${isOpen ? "popup_visible" : ""} `}>
       <div className="popup__window">
@@ -11,11 +12,10 @@ export default function PopupWithForm({ name, title, input, isOpen, onClose }) {
         />
 
         <h2 className="popup__window-title"> {title} </h2>
-
-        <form className={`popup__form popup__form_${name}`} name="popup__form_edit" onSubmit={onClose}>
-          {input}
+        {props.children}
+        <form className={`popup__form popup__form_${name}`} name="popup__form_edit" onSubmit={onSubmit}>
           <button type="submit" className="popup__save-button" id="edit-save-btn">
-            Save
+            {buttonTitle}
           </button>
         </form>
       </div>

@@ -21,6 +21,65 @@ export class Api {
       headers: this._headers,
     });
   }
+
+  deleteCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/${cardId} `, {
+      headers: this._headers,
+      method: "DELETE",
+    });
+  }
+
+  _likeCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/likes/${cardId} `, {
+      headers: this._headers,
+      method: "PUT",
+    });
+  }
+
+  _dislikeCard(cardId) {
+    return customFetch(`${this._baseUrl}/cards/likes/${cardId} `, {
+      headers: this._headers,
+      method: "DELETE",
+    });
+  }
+
+  changeLikeCardStatus(cardID, isLiked) {
+    if (isLiked) {
+      return this._likeCard(cardID);
+    } else {
+      return this._dislikeCard(cardID);
+    }
+  }
+
+  editPrifileInfo(data) {
+    return customFetch(`${this._baseUrl}/users/me `, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
+  }
+
+  editPrifileImg(data) {
+    return customFetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+
+      method: "PATCH",
+
+      body: JSON.stringify(data),
+    });
+  }
+
+  createCard({ name, link }) {
+    const data = { name, link };
+
+    return customFetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+
+      method: "POST",
+
+      body: JSON.stringify(data),
+    });
+  }
 }
 
 export const api = new Api({

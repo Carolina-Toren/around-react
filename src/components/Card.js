@@ -1,13 +1,42 @@
-export default function Card({ card, onCardClick }) {
+import React from "react";
+import { CurrentUserContext } from "./context/CurrentUserContext";
+
+export default function Card({ card, onCardClick, onCardLike, onDeleteClick }) {
   const handleClick = () => {
     onCardClick(card);
   };
 
+  const handleLikeClick = () => {
+    onCardLike(card);
+  };
+
+  const handleDeleteClick = () => {
+    onDeleteClick(card);
+  };
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  // Checking if the current user is the owner of the current card
+  const isOwn = card.owner._id === currentUser._id;
+
+  // Creating a variable which you'll then set in `className` for the delete button
+  const cardDeleteButtonClassName = `photo-feed__delete-btn ${
+    isOwn ? "photo-feed__delete-btn_visible" : "photo-feed__delete-btn_hidden"
+  }`;
+
+  // Check if the card was liked by the current user
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+  // Create a variable which you then set in `className` for the like button
+  const cardLikeButtonClassName = `photo-feed__card-button ${
+    isLiked ? "photo-feed__card-button_active" : "photo-feed__card-button_not-active"
+  }`;
+
   return (
     <div className="photo-feed__card">
       <button
-        className="photo-feed__delete-btn"
-        // onClick={props.onDeleteClick}
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
         type="button"
         aria-label="delete button"
       />
@@ -18,8 +47,8 @@ export default function Card({ card, onCardClick }) {
         <h2 className="photo-feed__text"> {`${card.name}`}</h2>
         <div className="photo-feed__like-container">
           <button
-            className="photo-feed__card-button"
-            // onClick={props.onCardLike}
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
             type="button"
             aria-label="like button"
           />
