@@ -4,7 +4,7 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import { api } from "../utils/api";
-import { CurrentUserContext } from "./context/CurrentUserContext";
+import { CurrentUserContext } from "./contexts/CurrentUserContext";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
